@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import 'primeicons/primeicons.css';
+
+// body {
+//   font-family: Helvetica, Arial, sans-serif;
+//   font-size: 1rem;
+//   font-weight: 400;
+//   line-height: 1.5;
+//   color: #212529;
+//   background-color: #fff;
+// }
+
+// .loading-spinner {
+//   display: inline-block;
+//   width: 80px;
+//   height: 80px;
+// }
+// .loading-spinner:after {
+//   content: " ";
+//   display: block;
+//   width: 64px;
+//   height: 64px;
+//   margin: 8px;
+//   border-radius: 50%;
+//   border: 6px solid #fff;
+//   border-color: #184b81 transparent #184b81 transparent;
+//   animation: loading-spinner 1.2s linear infinite;
+// }
+// @keyframes loading-spinner {
+//   0% {
+//     transform: rotate(0deg);
+//   }
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// }
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+:root {
+  -ms-overflow-style:none;
+}
