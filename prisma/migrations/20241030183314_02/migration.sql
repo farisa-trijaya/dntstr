@@ -37,7 +37,7 @@ CREATE TABLE `provider_users` (
 CREATE TABLE `sessions` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `user_id` INTEGER NOT NULL,
-    `sid` VARCHAR(191) NOT NULL,
+    `sid` VARCHAR(255) NOT NULL,
     `start_time` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `end_time` DATETIME(3) NULL,
     `access_token` VARCHAR(4000) NOT NULL,
@@ -96,6 +96,7 @@ CREATE TABLE `transactions` (
     `paymentID` VARCHAR(255) NOT NULL,
     `paymentSource` VARCHAR(50) NOT NULL,
     `receipt_umber` VARCHAR(50) NULL,
+    `order_status` ENUM('ORDER_PREPARED', 'ORDER_SHIPPED', 'ORDER_ON_THE_WAY', 'ORDER_COMPLETED') NOT NULL DEFAULT 'ORDER_PREPARED',
     `tracking_info` JSON NULL,
     `status` BOOLEAN NOT NULL DEFAULT false,
     `date_created` DATETIME(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),

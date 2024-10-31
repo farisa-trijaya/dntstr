@@ -9,7 +9,7 @@ const prisma = new PrismaClient();
 export async function getUserByEmail(email: string): Promise<User | null> {
   let user = null;
   await prisma.users
-    .findFirst({
+    .findUniqueOrThrow({
       where: {
         email: email,
       },
@@ -26,7 +26,7 @@ export async function getUserByEmail(email: string): Promise<User | null> {
 export async function getUserByUuid(uuid: string): Promise<User | null> {
   let user = null;
   await prisma.users
-    .findFirst({
+    .findUniqueOrThrow({
       where: {
         uuid: uuid,
       },

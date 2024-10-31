@@ -1,11 +1,12 @@
 generator client {
   provider      = "prisma-client-js"
-  binaryTargets = ["native"]
+  binaryTargets = ["native", "debian-openssl-1.1.x", "debian-openssl-3.0.x", "linux-musl", "linux-musl-openssl-3.0.x"]
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider          = "mysql"
+  url               = "mysql://root:@127.0.0.1:3306/test_lp_nuxt"
+  shadowDatabaseUrl = "mysql://root:@127.0.0.1:3306/test_lp_nuxt2"
 }
 
 model users {
@@ -43,7 +44,7 @@ model sessions {
   id           Int       @id @default(autoincrement())
   user         users?    @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id      Int
-  sid          String    @unique(map: "sid")
+  sid          String    @unique(map: "sid") @db.VarChar(255)
   start_time   DateTime  @default(now())
   end_time     DateTime?
   access_token String    @db.VarChar(4000)
@@ -87,27 +88,35 @@ enum tokenType {
 }
 
 model transactions {
-  id            Int       @id @default(autoincrement())
-  user          users?    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  id            Int         @id @default(autoincrement())
+  user          users?      @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id       Int
-  sku           String    @db.VarChar(255)
-  orderID       String    @unique(map: "orderID") @db.VarChar(100)
-  name          String    @db.VarChar(255)
-  phone         String    @db.VarChar(100)
-  country       String    @db.VarChar(100)
-  state         String    @db.VarChar(255)
-  city          String    @db.VarChar(255)
-  postal_code   String    @db.VarChar(50)
-  address_1     String    @db.Text
-  address_2     String?   @db.Text
-  amount        Float     @db.Double
-  quantity      Float     @db.Double
-  payerID       String    @db.VarChar(255)
-  paymentID     String    @db.VarChar(255)
-  paymentSource String    @db.VarChar(50)
-  receipt_umber String?   @db.VarChar(50)
-  tracking_info Json?     @db.Json
-  status        Boolean   @default(false)
-  date_created  DateTime  @default(now()) @db.DateTime(0)
-  updated_at    DateTime? @updatedAt
+  sku           String      @db.VarChar(255)
+  orderID       String      @unique(map: "orderID") @db.VarChar(100)
+  name          String      @db.VarChar(255)
+  phone         String      @db.VarChar(100)
+  country       String      @db.VarChar(100)
+  state         String      @db.VarChar(255)
+  city          String      @db.VarChar(255)
+  postal_code   String      @db.VarChar(50)
+  address_1     String      @db.Text
+  address_2     String?     @db.Text
+  amount        Float       @db.Double
+  quantity      Float       @db.Double
+  payerID       String      @db.VarChar(255)
+  paymentID     String      @db.VarChar(255)
+  paymentSource String      @db.VarChar(50)
+  receipt_umber String?     @db.VarChar(50)
+  order_status  StatusOrder @default(ORDER_PREPARED)
+  tracking_info Json?       @db.Json
+  status        Boolean     @default(false)
+  date_created  DateTime    @default(now()) @db.DateTime(0)
+  updated_at    DateTime?   @updatedAt
+}
+
+enum StatusOrder {
+  ORDER_PREPARED
+  ORDER_SHIPPED
+  ORDER_ON_THE_WAY
+  ORDER_COMPLETED
 }

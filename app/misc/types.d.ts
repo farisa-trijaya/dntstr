@@ -34,6 +34,11 @@ export type Transaction = {
   paymentID: string;
   paymentSource: string;
   receipt_umber: string | null;
+  order_status:
+    | "ORDER_PREPARED"
+    | "ORDER_SHIPPED"
+    | "ORDER_ON_THE_WAY"
+    | "ORDER_COMPLETED";
   tracking_info: object | null;
   status: boolean;
   date_created: DateTime;
@@ -112,6 +117,12 @@ export enum Roles {
   "GENERAL",
 }
 
+export enum StatusOrder {
+  "ORDER_PREPARED",
+  "ORDER_SHIPPED",
+  "ORDER_ON_THE_WAY",
+  "ORDER_COMPLETED",
+}
 export type NxFormInput = {
   label?: string;
   id: string;

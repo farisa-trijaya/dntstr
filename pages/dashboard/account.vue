@@ -31,7 +31,7 @@
           <div class="relative flex items-center justify-center">
             <NuxtImg
               v-if="dataStore.profile?.avatar !== null"
-              :src="getAvatarUser(String(dataStore.profile?.avatar))"
+              :src="`/users/${dataStore.profile?.avatar}`"
               alt="user-avatar"
               class="h-12 w-12 object-fill rounded-full"
             />
@@ -170,9 +170,7 @@ async function onAvatarChange(event: Event) {
 
   await uploadAvatar(file);
 }
-function getAvatarUser(img: string) {
-  return `${config.public.publicUrl}/users/${img}`;
-}
+
 const sideMenu = [
   {
     id: 1,

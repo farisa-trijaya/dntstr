@@ -104,6 +104,13 @@ export default defineNuxtConfig({
     storage: "localStorage", // or 'sessionStorage' or 'cookie'
     storageKey: "nuxt-color-mode",
   },
+  // hooks: {
+  //   "vite:extendConfig": (config) => {
+  //     if (typeof config.server!.hmr === "object") {
+  //       config.server!.hmr.protocol = "wss";
+  //     }
+  //   },
+  // },
   vite: {
     css: {
       preprocessorOptions: {
@@ -112,6 +119,13 @@ export default defineNuxtConfig({
         },
       },
     },
+    // server: {
+    //   hmr: {
+    //     protocol: 'wss',
+    //     clientPort: 443,
+    //     path: 'hmr/'
+    //   }
+    // }
   },
   css: ["~/assets/css/main.scss"],
   icon: {

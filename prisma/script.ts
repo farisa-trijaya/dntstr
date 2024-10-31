@@ -10,8 +10,8 @@ async function main() {
     data: {
       id: 1,
       uuid: uuidv4(),
-      name: "Trijaya",
-      email: "farisatrijayagroup@gmail.com",
+      name: "Dente Store",
+      email: "storedente@gmail.com",
       password: await bcryptjs.hash("Amanah@2024", 12),
       role: "SUPER_ADMIN",
       email_verified: true,
